@@ -6,6 +6,15 @@ class ReportsController < ApplicationController
       title: "Monthly Sales Report",
       content: "This report provides an overview of the monthly sales performance, including key metrics and insights."
     }
+
+    # Example chart data
+    @chart_data = {
+      "January" => 100,
+      "February" => 200,
+      "March" => 150,
+      "April" => 300
+    }
+
     respond_to do |format|
       format.html
       format.pdf do

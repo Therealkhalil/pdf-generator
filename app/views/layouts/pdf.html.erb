@@ -1,10 +1,53 @@
+<!-- filepath: c:\Users\fodog\Desktop\pdf-generator\app\views\reports\show.html.erb -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>PDF Report</title>
-    <%= stylesheet_link_tag 'pdf', media: 'all' %>
-  </head>
-  <body>
-    <%= yield %>
-  </body>
+<head>
+  <title><%= @data[:title] %></title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .header img {
+      max-width: 150px;
+    }
+    .content {
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+    .chart {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 12px;
+      color: #888;
+    }
+  </style>
+  <%= javascript_include_tag "chartkick" %>
+</head>
+<body>
+  <div class="header">
+    <img src="<%= asset_path('logo.png') %>" alt="Company Logo">
+    <h1><%= @data[:title] %></h1>
+  </div>
+  <div class="content">
+    <p>Welcome to the report for <strong><%= @data[:name] %></strong>.</p>
+    <p><%= @data[:content] %></p>
+    <p>This report was generated on <%= @data[:date] %>.</p>
+  </div>
+  <div class="chart">
+    <h2>Sales Performance</h2>
+    <%= line_chart @chart_data %>
+  </div>
+  <div class="footer">
+    <p>Thank you for using our service!</p>
+  </div>
+</body>
 </html>
